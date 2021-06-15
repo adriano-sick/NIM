@@ -123,4 +123,4 @@ def pecas_rest(n):
     else:
         print("Agora resta apenas uma peça no tabuleiro.");
 
-#main();
+main();
