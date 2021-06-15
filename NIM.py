@@ -1,9 +1,5 @@
 #Adriano Siqueira - 06-13-21 - Semana 6 - Tarefa de programação: Programa completo - Jogo do NIM
 
-#TRATAR POSSIVEIS ERROS DE ENTRADA DO USUARIO EM n, E m
-
-
-
 def main():
     print("\nBem-vindo ao jogo do NIM! Escolha:\n");
     print("1 - para jogar uma partida isolada");
