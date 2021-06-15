@@ -33,7 +33,7 @@ def partida():
         n = int(n);
         m = int(m);
 
-    if m >= n:
+    if m > n:
         partida();
 
     else:
@@ -101,7 +101,7 @@ def computador_escolhe_jogada(n, m):
     
 def usuario_escolhe_jogada(n, m):
     retP = int(input("Quantas peças você vai tirar? "));
-    while(retP > m):
+    while(retP > m or retP <= 0 or n < retP):
         retP = 0;
         print("\nOops! Jogada inválida! Tente de novo.\n");
         retP = int(input("Quantas peças você vai tirar? "));
@@ -123,4 +123,4 @@ def pecas_rest(n):
     else:
         print("Agora resta apenas uma peça no tabuleiro.");
 
-main();
+#main();
