@@ -2,6 +2,10 @@
 
 #RESOLVER SCORE DO CAMPEONATO
 #ACERTAR JOGADAS DO COMPUTADOR
+#TRATAR POSSIVEIS ERROS DE ENTRADA DO USUARIO EM n, E m
+
+
+
 def main():
     print("\nBem-vindo ao jogo do NIM! Escolha:\n");
     print("1 - para jogar uma partida isolada");
@@ -23,7 +27,7 @@ def partida():
     n = int(input("Quantas peças? "));
     m = int(input("Limite de peças por jogada? "));
    
-    if m >= n or not type(n) == int or type(m) == int:
+    if m >= n:
         partida();
 
     else:
@@ -35,7 +39,7 @@ def partida():
                 if (n > 0):
                     n -= computador_escolhe_jogada(n, m);
                     print("Agora restam", n, "peças no tabuleiro.");
-                    if (n > 0):
+                    if (n <= 0):
                         print ("computador venceu");
                 else:
                     print("jogador venceu");
@@ -43,28 +47,15 @@ def partida():
         else:
             print("Computador começa!");
             while (n > 0):
-                n -= computador_escolhe_jogada(n, m);
+                n -= computador_escolhe_jogada(n, m);  
                 print("Agora restam", n, "peças no tabuleiro.");
                 if (n > 0):
                     n -= usuario_escolhe_jogada(n, m);
                     print("Agora restam", n, "peças no tabuleiro.");
-                    if (n > 0):
+                    if (n <= 0):
                         print("usuario venceu");
                 else:
                     print("Computador venceu");
-
-    #aqui fica o looping (laço) do game (turno de cada um)
-    #if(n <= 0):
-    #    print("Fim do jogo! O computador ganhou!");
-    #    score(1, 0);
-    #else:        
-    #    usuario_escolhe_jogada(n, m); 
-    #**********************************************************
-    #    if(n <= 0):
-    #    print("O Jogador venceu! - FALHA NO ALGORITMO!!!");
-    #    score(0, 1);
-    #else:
-    #    computador_escolhe_jogada(n, m); 
         
 def campeonato():
     print("\n**** Rodada 1 ****\n");
@@ -73,20 +64,20 @@ def campeonato():
     partida();
     print("\n**** Rodada 3 ****\n");
     partida();
-    print(score(0, 0));
+    print("\n**** Rodada 3 ****\n");
     
 def computador_escolhe_jogada(n, m):
-    if(n >= m):
-        if n % (m + 1) == 0:
-            retC = n % m + 1;
-        else:
-            retC = m;
-    else:
-        retC = n        
+    retC = 1
 
-    n -= retC;
-    print("O computador tirou", retC, "peças.");    
-        
+    while retC != m:
+        if (n - retC) % (m + 1) == 0:
+            print("O computador tirou", retC, "peças.");
+            return retC
+
+        else:
+            retC += 1
+ 
+    print("O computador tirou", retC, "peças."); 
     return retC
     
 def usuario_escolhe_jogada(n, m):
@@ -97,5 +88,6 @@ def usuario_escolhe_jogada(n, m):
         usuario_escolhe_jogada(n, m);
 
     return retP
+
 
 main();
